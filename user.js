@@ -2,7 +2,7 @@ var config = require('./config')
 
 
 var userModule = {
-  deps : ['model','request'],
+  deps : ['model','request','rest','bus'],
   models : require('./models'),
   listen : require('./listen')(config),
   //this will allow app global config overwrite
