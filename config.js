@@ -6,6 +6,10 @@ module.exports = {
             required: true,
             match: /.+\@.+\..+/,
             message: 'email must be valid'
+          },
+          password : {
+            type : 'string',
+            required: true
           }
         },
         registry : {
