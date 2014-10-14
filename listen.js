@@ -46,6 +46,10 @@ module.exports = function( config ){
         })
       })
     },
+    'user.me' : function(){
+      console.log("===========me", this.session("user"))
+      this.data("respond.data", this.session("user"))
+    },
     'user.logout' : function(){
       this.session.user = null
     }
