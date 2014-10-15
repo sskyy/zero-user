@@ -23,7 +23,7 @@ var userModule = {
               console.log("====================setting session user===========", users[0].name)
               req.session.user = users[0]
               next()
-            }).fail(function(err){
+            }).catch(function(err){
               ZERO.error(err)
               next()
             })
@@ -44,7 +44,7 @@ var userModule = {
 //          userModule.dep.model.models['user'].find({limit:1}).then(function(users){
 //            req.session.user = users[0]
 //            next()
-//          }).fail(function(err){
+//          }).catch(function(err){
 //            ZERO.error(err)
 //            next()
 //          })

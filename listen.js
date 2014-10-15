@@ -33,12 +33,14 @@ module.exports = function( config ){
       return this.fcall('user.register',params, function() {
         console.log("validating register params", params)
         var errors = validator.registry.validate(params)
-        console.log("validating register params done", params)
+        var insideBus = this
 
         if (errors.length) return root.error(406, errors)
         //We may verify invite code or something here
-        return root.fire("user.create", params).then(function () {
+        return insideBus.fire("user.create", params).then(function () {
           var user = _.clone(root.data('user.create'))
+          debugger;
+          console.log( "should after user created!!!!!!!!!!!!!!!", user)
           delete user.password
 
           root.session("user",user)
