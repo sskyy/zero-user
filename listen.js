@@ -53,7 +53,7 @@ module.exports = function( config ){
       this.data("respond.data", this.session("user"))
     },
     'user.logout' : function(){
-      this.session.user = null
+      this.session("user", null)
     }
   }
 }
