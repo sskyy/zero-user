@@ -21,10 +21,14 @@ module.exports = function( config ){
 
         return root.fire("user.findOne", params).then( function(){
           var user = _.clone( root.data('user.findOne') )
-          delete user.password
+          if( user ){
+            delete user.password
 
-          root.session("user",user)
-          root.data('respond.data', user)
+            root.session("user",user)
+            root.data('respond.data', user)
+          }else{
+            return root.error( 404, errors )
+          }
         })
       })
     },
