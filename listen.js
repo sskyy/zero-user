@@ -49,7 +49,23 @@ module.exports = function( config, module ){
       })
     },
     'user.me' : function(){
-      this.data("respond.data", this.session("user"))
+      var root = this
+      if( root.session('user') && root.session('user').id ){
+        return root.fire("user.findOne", {id:root.session('user').id}).then( function(eventResult){
+          var user = _.clone( eventResult['model.findOne.user'])
+          if( user ){
+            delete user.password
+
+            root.session("user",user)
+            root.data('respond.data', user)
+          }else{
+            return root.error( 404, errors )
+          }
+        })
+      }else{
+        return this.error(403,'user not logged in')
+      }
+
     },
     'user.logout' : function(){
       this.session("user", null)
