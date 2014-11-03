@@ -1,11 +1,17 @@
 module.exports = [{
     identity: 'user',
     connection: 'localDisk',
-
     attributes: {
-      name: 'string',
+      name: {
+        type : 'string',
+        unique : true
+      },
       password : {
         type : 'string'
+      },
+      email : {
+        type : 'email',
+        unique: true
       }
     },
     security : {
