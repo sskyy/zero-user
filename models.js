@@ -15,7 +15,7 @@ module.exports = [{
       }
     },
     security : {
-      password: ['encryptPermanent']
+      password: ['password']
     },
     rest : true
   }]
