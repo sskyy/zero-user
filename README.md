@@ -1,6 +1,6 @@
 # zero-user #
 
-This module get you a full pack of user system easily.
+Provide you a full pack of user system.
 
 ## Usage ##
 
