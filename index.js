@@ -7,11 +7,6 @@ var userModule = {
   //this will allow app global config overwrite
   config : config,
   route : {
-    "/user/count" : function( req, res, next){
-      userModule.dep.model.models['user'].count().then(function(total){
-        res.json({count:total})
-      })
-    },
     "*" : {
       "function" : function initSession(req,res,next){
         //TODO only for dev
