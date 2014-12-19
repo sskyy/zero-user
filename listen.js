@@ -22,7 +22,7 @@ module.exports = function( config, module ){
           if( user ){
             delete user.password
 
-            root.session("user",user)
+            root.session.user = user
             root.data('respond.data', user)
           }else{
             return root.error( 404, errors )
@@ -43,21 +43,21 @@ module.exports = function( config, module ){
           var user = _.clone( eventResult['model.create.user'])
           delete user.password
 
-          root.session("user",user)
+          root.session.user=user
           root.data('respond.data', user)
         })
       })
     },
     'user.me' : function(){
       var root = this
-      console.log( "current user", root.session('user'))
-      if( root.session('user') && root.session('user').id ){
-        return root.fire("user.findOne", {id:root.session('user').id}).then( function(eventResult){
+      console.log( "current user", root.session.user)
+      if( root.session.user && root.session.user.id ){
+        return root.fire("user.findOne", {id:root.session.user.id}).then( function(eventResult){
           var user = _.clone( eventResult['model.findOne.user'])
           if( user ){
             delete user.password
 
-            root.session("user",user)
+            root.session.user=user
             root.data('respond.data', user)
           }else{
             return root.error( 404, errors )
@@ -69,7 +69,7 @@ module.exports = function( config, module ){
 
     },
     'user.logout' : function(){
-      this.session("user", null)
+      this.session.user= null
       this.data("respond.data",{msg:"success"})
     }
   }
